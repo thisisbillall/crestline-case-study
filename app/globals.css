@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   CRESTLINE CASE STUDY — soft lilac fintech.
+
+   LIGHT ONLY, deliberately. There is no dark theme and no `prefers-color-scheme`
+   block: every colour is painted explicitly so the page holds its own ground
+   whatever theme the reader's browser is in.
+   ========================================================================== */
+
+@theme {
+  --color-ground: #f7f7fc;
+  --color-card: #ffffff;
+  --color-ink: #1a1d26;
+  --color-muted: #6f7583;
+  --color-faint: #9aa0ad;
+  --color-hair: #eeeff5;
+  --color-edge: #e7e8f0;
+
+  --color-lav: #b8b0ee;
+  --color-lav-ink: #6b5fc7;
+  --color-lav-wash: #f2f0fd;
+  --color-mint: #9fe0c5;
+  --color-mint-ink: #2f9e78;
+  --color-mint-wash: #ebfaf3;
+  --color-sky: #a5cdf5;
+  --color-sky-ink: #4a86c4;
+  --color-sky-wash: #eef6fd;
+  --color-peach: #f9c9a4;
+  --color-peach-ink: #d4864a;
+  --color-peach-wash: #fef4ec;
+  --color-rose: #f7b8bd;
+  --color-rose-ink: #d76b78;
+  --color-rose-wash: #fdeff0;
+  --color-butter: #f7dfa0;
+  --color-butter-ink: #c99a2e;
+  --color-butter-wash: #fdf8e9;
+
+  --color-good: #17a07a;
+  --color-good-wash: #eafaf3;
+  --color-warn: #c9902a;
+  --color-warn-wash: #fdf6e6;
+  --color-bad: #dd6670;
+  --color-bad-wash: #fdeef0;
+
+  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --radius-card: 22px;
+  --radius-inner: 16px;
+
+  --shadow-soft: 0 1px 2px rgb(26 29 38 / 0.04), 0 2px 8px -3px rgb(26 29 38 / 0.07);
+  --shadow-card: 0 2px 4px -1px rgb(26 29 38 / 0.035), 0 14px 32px -12px rgb(26 29 38 / 0.12);
+  --shadow-lift: 0 24px 52px -18px rgb(26 29 38 / 0.2);
+
+  --ease-jelly: cubic-bezier(0.34, 1.45, 0.5, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-ground);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.022em;
+  text-wrap: balance;
+}
+
+/* The soft light behind the top of every page. */
+.aura {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 520px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(760px 380px at 12% -8%, rgb(184 176 238 / 0.3), transparent 62%),
+    radial-gradient(620px 320px at 88% -14%, rgb(159 224 197 / 0.26), transparent 62%),
+    radial-gradient(520px 300px at 55% -10%, rgb(165 205 245 / 0.2), transparent 64%);
+}
+
+/* Cards rise into place rather than appearing. */
+@keyframes pop {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+.pop { animation: pop 0.6s var(--ease-jelly) both; }
+
+/* The one range input on the site: the simulator's levers. */
+input[type="range"] {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  height: 24px;
+  cursor: pointer;
+  display: block;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 7px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--color-lav-wash), var(--color-sky-wash));
+}
+input[type="range"]::-moz-range-track {
+  height: 7px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--color-lav-wash), var(--color-sky-wash));
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  margin-top: -7.5px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff, var(--color-lav-wash));
+  border: 2.5px solid var(--color-lav-ink);
+  box-shadow: 0 3px 10px -2px rgb(107 95 199 / 0.5);
+  transition: transform 0.18s var(--ease-jelly);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff, var(--color-lav-wash));
+  border: 2.5px solid var(--color-lav-ink);
+  box-shadow: 0 3px 10px -2px rgb(107 95 199 / 0.5);
+}
+input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.18); }
+
+:focus-visible {
+  outline: 2px solid var(--color-lav-ink);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
