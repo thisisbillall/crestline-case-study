@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   title: "Grey Infra Working Capital",
   description:
     "How we found 12.2 crore trapped inside an EPC contractor's own ERP, where it was going, and what changed.",
+  // The page is read at the marketing domain; this origin only serves it.
+  metadataBase: new URL("https://www.crestlineintelligence.com"),
+  alternates: { canonical: "/case-studies/grey-infra" },
   openGraph: {
     title: "Grey Infra Working Capital",
     description:
