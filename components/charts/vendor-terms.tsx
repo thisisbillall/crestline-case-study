@@ -42,7 +42,7 @@ export function VendorTerms() {
           const late = paid > terms;
           return [
             `<b style="font-family:${DISPLAY}">${name}</b>${
-              msme ? ` <span style="color:${C.roseInk};font-weight:700">MSME</span>` : ""
+              msme ? ` <span style="color:${C.risk};font-weight:700">MSME</span>` : ""
             }`,
             `Terms agreed &nbsp; <b>${terms} days</b>`,
             `Actually paid in &nbsp; <b>${paid} days</b>`,
@@ -82,7 +82,7 @@ export function VendorTerms() {
           data: vendors.map(([, terms, paid]) => ({
             value: Math.max(0.4, Math.abs(paid - terms)),
             itemStyle: {
-              color: paid > terms ? fill(C.rose, true) : fill(C.mint, true),
+              color: paid > terms ? fill(C.riskSoft, true) : fill(C.greenSoft, true),
               borderRadius: 7,
             },
           })),
@@ -94,7 +94,7 @@ export function VendorTerms() {
             fontWeight: 600,
             fontFamily: FONT,
             color: (p: unknown) =>
-              vendors[cb(p).dataIndex][2] > vendors[cb(p).dataIndex][1] ? C.roseInk : C.mintInk,
+              vendors[cb(p).dataIndex][2] > vendors[cb(p).dataIndex][1] ? C.risk : C.green,
             formatter: (p: unknown) => {
               const [, terms, paid, spend] = vendors[cb(p).dataIndex];
               return `${paid > terms ? "+" : "−"}${Math.abs(paid - terms)}d · ${inr(spend)}`;
@@ -114,10 +114,11 @@ export function VendorTerms() {
           z: 10,
           itemStyle: {
             color: (p: unknown) =>
-              vendors[cb(p).dataIndex][2] > vendors[cb(p).dataIndex][1] ? C.roseInk : C.peachInk,
+              vendors[cb(p).dataIndex][2] > vendors[cb(p).dataIndex][1] ? C.risk : C.g2,
             borderColor: "#fff",
             borderWidth: 2,
           },
+          labelLayout: { hideOverlap: true },
           data: vendors.map(([, , paid], i) => [paid, i]),
         },
       ],
@@ -129,7 +130,7 @@ export function VendorTerms() {
 
   return (
     <Card>
-      <CardHead title="Agreed terms against days actually taken">
+      <CardHead title="Agreed terms against days actually taken" ai="terms">
         <PillGroup label="Project">
           {PROJECTS.map((p) => (
             <Pill key={p.ref} active={ref === p.ref} onClick={() => setRef(p.ref)}>
@@ -144,15 +145,15 @@ export function VendorTerms() {
           Terms agreed
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <i className="block size-[11px] rounded-full bg-peach-ink" />
+          <i className="block size-[11px] rounded-full bg-g1" />
           Days taken
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <i className="block size-[11px] rounded bg-rose" />
+          <i className="block size-[11px] rounded bg-bad" />
           Past terms
         </span>
         <span className="inline-flex items-center gap-1.5">
-          <i className="block size-[11px] rounded bg-mint" />
+          <i className="block size-[11px] rounded bg-accent-soft" />
           Inside terms
         </span>
       </div>

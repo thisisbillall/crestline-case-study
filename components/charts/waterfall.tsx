@@ -25,13 +25,12 @@ export function Waterfall() {
   );
 
   const option = useMemo(() => {
-    const base = stages.map(([, value], i) => (i === 0 ? 0 : value));
     const drop = stages.map(([, value], i) => (i === 0 ? 0 : stages[i - 1][1] - value));
 
     return asOption({
       animationDuration: 950,
       animationEasing: "cubicOut",
-      grid: { left: 8, right: 12, top: 26, bottom: 46, containLabel: true },
+      grid: { left: 8, right: 12, top: 30, bottom: 46, containLabel: true },
       tooltip: {
         ...TOOLTIP,
         trigger: "axis",
@@ -46,7 +45,7 @@ export function Waterfall() {
             `Share of contract &nbsp; <b>${((value / PORTFOLIO.contractValue) * 100).toFixed(1)}%</b>`,
           ];
           if (drop[i] > 0) {
-            lines.push(`Lost at this gate &nbsp; <b style="color:${C.roseInk}">−${inr(drop[i])}</b>`);
+            lines.push(`Lost at this gate &nbsp; <b style="color:${C.risk}">−${inr(drop[i])}</b>`);
           }
           if (wait !== null) lines.push(`Median wait &nbsp; <b>${wait.toFixed(1)} days</b>`);
           return lines.join("<br>");
@@ -75,58 +74,51 @@ export function Waterfall() {
       },
       series: [
         {
+          name: "Still moving",
           type: "bar",
-          barWidth: "54%",
+          stack: "gate",
+          barWidth: "56%",
           itemStyle: {
             color: (p: unknown) =>
-              cb(p).dataIndex === stages.length - 1 ? fill(C.mint) : fill(C.sky),
-            borderRadius: [10, 10, 0, 0],
-            shadowBlur: 16,
-            shadowColor: "rgba(26,29,38,.10)",
-            shadowOffsetY: 5,
+              cb(p).dataIndex === stages.length - 1 ? fill(C.green) : fill(C.g1),
+            borderRadius: [0, 0, 4, 4],
           },
           label: {
             show: true,
-            position: "top",
-            distance: 8,
-            color: C.ink,
+            position: "insideTop",
+            distance: 9,
+            color: "#ffffff",
             fontWeight: 800,
-            fontSize: 13,
+            fontSize: 12.5,
             fontFamily: DISPLAY,
             formatter: (p: unknown) => inr(cb(p).value),
           },
+          labelLayout: { hideOverlap: true },
           data: stages.map(([, value]) => value),
         },
         {
+          name: "Lost at this gate",
           type: "bar",
-          stack: "loss",
-          barWidth: "54%",
-          barGap: "-100%",
-          silent: true,
-          itemStyle: { color: "transparent" },
-          data: base,
-        },
-        {
-          type: "bar",
-          stack: "loss",
-          barWidth: "54%",
+          stack: "gate",
+          barWidth: "56%",
           itemStyle: {
-            color: "rgba(247,184,189,.38)",
-            borderRadius: [7, 7, 0, 0],
-            borderColor: C.rose,
+            color: C.riskWash,
+            borderRadius: [4, 4, 0, 0],
+            borderColor: C.riskSoft,
             borderWidth: 1,
             borderType: "dashed",
           },
           label: {
             show: true,
             position: "inside",
-            color: C.roseInk,
+            color: C.risk,
             fontWeight: 700,
-            fontSize: 11.5,
+            fontSize: 11,
             fontFamily: FONT,
             formatter: (p: unknown) =>
-              cb(p).value > PORTFOLIO.contractValue * 0.02 ? `−${inr(cb(p).value)}` : "",
+              cb(p).value > PORTFOLIO.contractValue * 0.035 ? `−${inr(cb(p).value)}` : "",
           },
+          labelLayout: { hideOverlap: true },
           data: drop,
         },
       ],
@@ -139,6 +131,7 @@ export function Waterfall() {
         <CardHead
           title="Contract → executed → certified → invoiced → due → collected"
           sub="Pooled across every bill in the company"
+          ai="waterfall"
         />
         <div className="px-3 pb-4">
           <EChart option={option} height={380} ariaLabel="Contract value to cash, stage by stage" />

@@ -17,31 +17,26 @@
   --color-hair: #eeeff5;
   --color-edge: #e7e8f0;
 
-  --color-lav: #b8b0ee;
-  --color-lav-ink: #6b5fc7;
-  --color-lav-wash: #f2f0fd;
-  --color-mint: #9fe0c5;
-  --color-mint-ink: #2f9e78;
-  --color-mint-wash: #ebfaf3;
-  --color-sky: #a5cdf5;
-  --color-sky-ink: #4a86c4;
-  --color-sky-wash: #eef6fd;
-  --color-peach: #f9c9a4;
-  --color-peach-ink: #d4864a;
-  --color-peach-wash: #fef4ec;
-  --color-rose: #f7b8bd;
-  --color-rose-ink: #d76b78;
-  --color-rose-wash: #fdeff0;
-  --color-butter: #f7dfa0;
-  --color-butter-ink: #c99a2e;
-  --color-butter-wash: #fdf8e9;
+  /*
+     A GRAPHITE RAMP AND ONE ACCENT, matching lib/chart-theme.ts.
+     Green is the only colour that means something on this page: better,
+     inside terms, released, since. Everything else separates on lightness.
+  */
+  --color-g1: #3b4150;
+  --color-g2: #6f7787;
+  --color-g3: #a5abb9;
+  --color-g4: #d6dae2;
 
-  --color-good: #17a07a;
-  --color-good-wash: #eafaf3;
-  --color-warn: #c9902a;
-  --color-warn-wash: #fdf6e6;
-  --color-bad: #dd6670;
-  --color-bad-wash: #fdeef0;
+  --color-accent: #2f9e78;
+  --color-accent-soft: #8ccbaf;
+  --color-accent-wash: #eef8f3;
+
+  --color-good: #2f9e78;
+  --color-good-wash: #eef8f3;
+  --color-warn: #6f7787;
+  --color-warn-wash: #f2f3f7;
+  --color-bad: #bf6f79;
+  --color-bad-wash: #fbf1f2;
 
   --font-display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-body: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -87,9 +82,8 @@ h1, h2, h3, h4 {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(760px 380px at 12% -8%, rgb(184 176 238 / 0.3), transparent 62%),
-    radial-gradient(620px 320px at 88% -14%, rgb(159 224 197 / 0.26), transparent 62%),
-    radial-gradient(520px 300px at 55% -10%, rgb(165 205 245 / 0.2), transparent 64%);
+    radial-gradient(820px 400px at 18% -10%, rgb(140 203 175 / 0.16), transparent 64%),
+    radial-gradient(640px 320px at 86% -14%, rgb(111 119 135 / 0.10), transparent 62%);
 }
 
 /* Cards rise into place rather than appearing. */
@@ -111,12 +105,12 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-runnable-track {
   height: 7px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--color-lav-wash), var(--color-sky-wash));
+  background: var(--color-g4);
 }
 input[type="range"]::-moz-range-track {
   height: 7px;
   border-radius: 99px;
-  background: linear-gradient(90deg, var(--color-lav-wash), var(--color-sky-wash));
+  background: var(--color-g4);
 }
 input[type="range"]::-webkit-slider-thumb {
   appearance: none;
@@ -124,25 +118,36 @@ input[type="range"]::-webkit-slider-thumb {
   height: 22px;
   margin-top: -7.5px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #fff, var(--color-lav-wash));
-  border: 2.5px solid var(--color-lav-ink);
-  box-shadow: 0 3px 10px -2px rgb(107 95 199 / 0.5);
+  background: #fff;
+  border: 2.5px solid var(--color-accent);
+  box-shadow: 0 3px 10px -2px rgb(47 158 120 / 0.45);
   transition: transform 0.18s var(--ease-jelly);
 }
 input[type="range"]::-moz-range-thumb {
   width: 22px;
   height: 22px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #fff, var(--color-lav-wash));
-  border: 2.5px solid var(--color-lav-ink);
-  box-shadow: 0 3px 10px -2px rgb(107 95 199 / 0.5);
+  background: #fff;
+  border: 2.5px solid var(--color-accent);
+  box-shadow: 0 3px 10px -2px rgb(47 158 120 / 0.45);
 }
 input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.18); }
 
 :focus-visible {
-  outline: 2px solid var(--color-lav-ink);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: 10px;
+}
+
+/*
+  A focus ring belongs on something the reader tabbed to, not on a container
+  that was focused for them. The drawer takes focus on open so a screen reader
+  starts inside it and Escape is heard, and drawing a ring around the whole
+  panel for that is noise.
+*/
+[tabindex="-1"]:focus,
+[tabindex="-1"]:focus-visible {
+  outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

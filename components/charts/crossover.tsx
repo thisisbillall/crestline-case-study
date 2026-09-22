@@ -69,7 +69,7 @@ export function Crossover() {
             {
               value: d.dpo,
               itemStyle: {
-                color: fill(C.peach, true),
+                color: fill(C.g3, true),
                 borderRadius: [0, 23, 23, 0],
                 shadowBlur: 18,
                 shadowColor: "rgba(212,134,74,.22)",
@@ -79,7 +79,7 @@ export function Crossover() {
             {
               value: d.dso,
               itemStyle: {
-                color: fill(C.sky, true),
+                color: fill(C.g1, true),
                 borderRadius: [0, 23, 23, 0],
                 shadowBlur: 18,
                 shadowColor: "rgba(74,134,196,.22)",
@@ -99,12 +99,12 @@ export function Crossover() {
           },
           markArea: {
             silent: true,
-            itemStyle: { color: funded ? WASH[C.rose] : WASH[C.mint] },
+            itemStyle: { color: funded ? WASH[C.riskSoft] : WASH[C.greenSoft] },
             label: {
               show: true,
               position: "insideTop",
               distance: -26,
-              color: funded ? C.roseInk : C.mintInk,
+              color: funded ? C.risk : C.green,
               fontWeight: 700,
               fontSize: 12.5,
               fontFamily: FONT,
@@ -112,6 +112,7 @@ export function Crossover() {
                 funded ? "funded by Grey Infra" : "of free funding"
               }`,
             },
+            labelLayout: { hideOverlap: true },
             data: [[{ xAxis: Math.min(d.dso, d.dpo) }, { xAxis: Math.max(d.dso, d.dpo) }]],
           },
         },
@@ -126,7 +127,7 @@ export function Crossover() {
   return (
     <>
       <Card>
-        <CardHead title="DSO against DPO" sub="Weighted by contract value across the six">
+        <CardHead title="DSO against DPO" sub="Weighted by contract value across the six" ai="crossover" aiAuto>
           <div
             role="group"
             aria-label="Basis"

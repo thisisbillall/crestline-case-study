@@ -70,18 +70,19 @@ export function WhoFundsWhom() {
           stack: "gap",
           barWidth: 16,
           itemStyle: {
-            color: fill(C.peach, true),
+            color: fill(C.g3, true),
             borderRadius: 8,
             shadowBlur: 12,
             shadowColor: "rgba(215,107,120,.20)",
             shadowOffsetY: 3,
           },
+          labelLayout: { hideOverlap: true },
           data: rows.map((p) => Number((p.clientPays - p.vendorPays).toFixed(1))),
           label: {
             show: true,
             position: "right",
             distance: 14,
-            color: C.roseInk,
+            color: C.risk,
             fontWeight: 700,
             fontSize: 12,
             fontFamily: FONT,
@@ -93,7 +94,7 @@ export function WhoFundsWhom() {
           type: "scatter",
           symbolSize: 14,
           z: 10,
-          itemStyle: { color: "#fff", borderColor: C.peachInk, borderWidth: 3 },
+          itemStyle: { color: "#fff", borderColor: C.g2, borderWidth: 3 },
           data: rows.map((p, i) => [p.vendorPays, i]),
         },
         {
@@ -101,12 +102,13 @@ export function WhoFundsWhom() {
           symbolSize: 14,
           z: 10,
           itemStyle: {
-            color: C.skyInk,
+            color: C.g1,
             borderColor: "#fff",
             borderWidth: 2,
             shadowBlur: 10,
             shadowColor: "rgba(74,134,196,.4)",
           },
+          labelLayout: { hideOverlap: true },
           data: rows.map((p, i) => [p.clientPays, i]),
         },
       ],
@@ -123,18 +125,19 @@ export function WhoFundsWhom() {
         <CardHead
           title="Vendor paid → client pays"
           sub="Measured off the order log, spend weighted, never inferred from terms"
+          ai="funds"
         />
         <div className="flex flex-wrap gap-4 px-5 text-[12.5px] text-muted">
           <span className="inline-flex items-center gap-1.5">
-            <i className="block size-[11px] rounded-full bg-card shadow-[inset_0_0_0_2.5px_var(--color-peach-ink)]" />
+            <i className="block size-[11px] rounded-full bg-card shadow-[inset_0_0_0_2.5px_var(--color-g2)]" />
             Vendor paid
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <i className="block size-[11px] rounded-full bg-sky-ink" />
+            <i className="block size-[11px] rounded-full bg-g1" />
             Client pays
           </span>
           <span className="inline-flex items-center gap-1.5">
-            <i className="block size-[11px] rounded bg-rose" />
+            <i className="block size-[11px] rounded bg-g3" />
             Financed by Grey Infra
           </span>
         </div>

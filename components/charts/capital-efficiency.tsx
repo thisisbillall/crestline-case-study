@@ -85,8 +85,8 @@ export function CapitalEfficiency() {
           // Bubble area carries the cash cycle: a longer cycle is a bigger circle.
           symbolSize: (p: unknown) => 22 + Math.max(0, (p as number[])[2]) * 0.72,
           itemStyle: {
-            color: (p: unknown) => (hungry(p) ? fill(C.rose) : fill(C.mint)),
-            borderColor: (p: unknown) => (hungry(p) ? C.roseInk : C.mintInk),
+            color: (p: unknown) => (hungry(p) ? fill(C.riskSoft) : fill(C.greenSoft)),
+            borderColor: (p: unknown) => (hungry(p) ? C.risk : C.green),
             borderWidth: 2,
             shadowBlur: 16,
             shadowColor: "rgba(26,29,38,.14)",
@@ -113,7 +113,7 @@ export function CapitalEfficiency() {
 
   return (
     <Card>
-      <CardHead title="Working capital against contract value" sub="Bubble size = cash cycle in days" />
+      <CardHead title="Working capital against contract value" sub="Bubble size = cash cycle in days" ai="projects" />
       <div className="px-3 pb-4">
         <EChart option={option} height={360} ariaLabel="Working capital against contract value by project" />
       </div>

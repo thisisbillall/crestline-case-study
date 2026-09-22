@@ -124,14 +124,14 @@ export function OperatingLoop() {
             className={[
               "rounded-[var(--radius-inner)] border px-4 py-3.5 text-left transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]",
               step === i
-                ? "border-lav bg-linear-160 from-lav-wash to-mint-wash shadow-[var(--shadow-card)]"
+                ? "border-g3 bg-linear-160 from-accent-wash to-accent-wash shadow-[var(--shadow-card)]"
                 : "border-edge bg-card",
             ].join(" ")}
           >
             <span
               className={[
                 "mb-2.5 grid size-[26px] place-items-center rounded-[9px] text-[11.5px] font-bold",
-                step === i ? "bg-lav-ink text-white" : "bg-ground text-muted",
+                step === i ? "bg-accent text-white" : "bg-ground text-muted",
               ].join(" ")}
             >
               {i + 1}

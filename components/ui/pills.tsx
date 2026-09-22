@@ -23,8 +23,8 @@ export function Pill({
         active
           ? "border-ink bg-ink font-semibold text-white"
           : accent
-            ? "border-mint bg-mint-wash font-semibold text-mint-ink hover:-translate-y-px"
-            : "border-edge bg-card font-medium text-muted hover:-translate-y-px hover:border-lav hover:text-ink",
+            ? "border-accent bg-accent-wash font-semibold text-accent hover:-translate-y-px"
+            : "border-edge bg-card font-medium text-muted hover:-translate-y-px hover:border-g3 hover:text-ink",
       ].join(" ")}
     >
       {children}

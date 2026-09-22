@@ -48,11 +48,16 @@ export function Masthead() {
       </span>
       </div>
 
-      <div className="flex items-center gap-4 xl:hidden">
-        <span className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-faint sm:block">
-          The client
+      <div className="flex flex-col items-end gap-2.5">
+        <div className="flex items-center gap-4 xl:hidden">
+          <span className="hidden text-[10px] font-semibold uppercase tracking-[0.16em] text-faint sm:block">
+            The client
+          </span>
+          <GreyMark size="sm" className="text-ink/70" />
+        </div>
+        <span className="text-[10.5px] font-medium text-faint">
+          Published with Grey&rsquo;s consent
         </span>
-        <GreyMark size="sm" className="text-ink/70" />
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ export function Simulator() {
           data: moved.map((leg) => ({
             value: Math.round(leg.cash),
             itemStyle: {
-              color: leg.cash >= 0 ? fill(C.mint, true) : fill(C.rose, true),
+              color: leg.cash >= 0 ? fill(C.greenSoft, true) : fill(C.riskSoft, true),
               borderRadius: 7,
             },
           })),
@@ -99,7 +99,7 @@ export function Simulator() {
 
   return (
     <Card>
-      <CardHead title="Cycle simulator">
+      <CardHead title="Cycle simulator" ai="simulator">
         <PillGroup label="Project">
           {PROJECTS.map((p) => (
             <Pill key={p.ref} active={ref === p.ref} onClick={() => pick(p.ref)}>
@@ -157,7 +157,7 @@ export function Simulator() {
                   {target === null ? (
                     <span className="text-faint">no agreed line</span>
                   ) : (
-                    <span className="font-bold text-mint-ink">terms {target.toFixed(0)}d</span>
+                    <span className="font-bold text-accent">terms {target.toFixed(0)}d</span>
                   )}
                   <span>{max.toFixed(0)}d</span>
                 </div>
@@ -172,8 +172,8 @@ export function Simulator() {
           })}
         </div>
 
-        <div className="border-t border-hair bg-linear-170 from-lav-wash to-ground px-5 py-5 sm:px-6 lg:border-l lg:border-t-0">
-          <div className="rounded-[var(--radius-inner)] border border-mint/70 bg-card px-5 py-4 shadow-[0_10px_26px_-12px_rgb(47_158_120/0.4)]">
+        <div className="border-t border-hair bg-linear-170 from-accent-wash to-ground px-5 py-5 sm:px-6 lg:border-l lg:border-t-0">
+          <div className="rounded-[var(--radius-inner)] border border-accent/70 bg-card px-5 py-4 shadow-[0_10px_26px_-12px_rgb(47_158_120/0.4)]">
             <div className="text-xs font-medium text-muted">Cash released, one-off</div>
             <div
               className={`mt-1 font-display text-[clamp(30px,4.4vw,42px)] font-extrabold leading-[1.05] tracking-[-0.035em] ${
@@ -192,7 +192,7 @@ export function Simulator() {
             <Mini label="Money out → money in" value={result.gapNext} was={result.gapNow} />
           </div>
 
-          <div className="mt-3 rounded-[11px] border border-dashed border-lav-ink/45 bg-card px-4 py-3.5 text-[12.5px] leading-[1.55] text-muted">
+          <div className="mt-3 rounded-[11px] border border-dashed border-accent/45 bg-card px-4 py-3.5 text-[12.5px] leading-[1.55] text-muted">
             <b className="font-bold text-ink">Make this the plan.</b> Raising this writes{" "}
             {result.cycleNext.toFixed(1)} days into the ticket as the target, on the same fact the auditor
             re-measures. It names the documents: {inr(project.bal.dso)} of invoices,{" "}

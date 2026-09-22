@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 
+import { AskAi } from "@/components/ai/ask-ai";
 import { Reveal } from "@/components/ui/reveal";
 
 /* ===========================================================================
@@ -60,9 +61,18 @@ export function Beat({
           </h2>
         </Reveal>
 
+        {/*
+          THE OUTCOME, AS A PULL QUOTE.
+
+          This was a tinted card with green figures inside it, which is the
+          default shape of every callout on the internet and read as cheap
+          against the rest of the page. The panel is gone: one hairline rule
+          carries the colour, the type does the work, and the figures are
+          emphasised by a rule under them rather than by a box around them.
+        */}
         <Reveal delay={90}>
-          <div className="mt-7 max-w-[62ch] rounded-[var(--radius-inner)] border border-mint/60 bg-linear-120 from-mint-wash to-card px-5 py-4.5 sm:px-6">
-            <p className="text-[clamp(15.5px,1.7vw,18.5px)] font-medium leading-[1.55] text-ink [&_b]:font-extrabold [&_b]:text-mint-ink">
+          <div className="mt-8 max-w-[58ch] border-l-2 border-accent pl-5 sm:pl-7">
+            <p className="text-[clamp(17px,2.05vw,21.5px)] leading-[1.48] text-ink [&_b]:font-display [&_b]:font-extrabold">
               {outcome}
             </p>
           </div>
@@ -70,7 +80,7 @@ export function Beat({
 
         <Reveal delay={150}>
           <div className="mt-9 flex items-baseline gap-3">
-            <span className="font-display text-[19px] font-extrabold text-lav-ink">How?</span>
+            <span className="font-display text-[19px] font-extrabold text-accent">How?</span>
             <span className="h-px flex-1 bg-hair" />
           </div>
           <p className="mt-4 max-w-[66ch] text-[15.5px] leading-[1.7] text-muted [&_b]:font-semibold [&_b]:text-ink">
@@ -131,17 +141,28 @@ export function Card({ children, className = "" }: { children: ReactNode; classN
 export function CardHead({
   title,
   sub,
+  ai,
+  aiAuto,
   children,
 }: {
   title: string;
   sub?: string;
+  /** The AI script this chart carries. See lib/ai-scripts.ts. */
+  ai?: string;
+  /** Opens itself the first time the reader reaches this chart. One chart uses it. */
+  aiAuto?: boolean;
   children?: ReactNode;
 }) {
   return (
     <div className="flex flex-wrap items-center gap-3.5 px-4 pb-3.5 pt-4 sm:px-5">
       <h4 className="font-display text-[14.5px] font-bold tracking-[-0.01em]">{title}</h4>
       {sub ? <span className="text-[12px] text-faint">{sub}</span> : null}
-      {children ? <div className="ml-auto flex flex-wrap items-center gap-2">{children}</div> : null}
+      {children || ai ? (
+        <div className="ml-auto flex flex-wrap items-center gap-2">
+          {children}
+          {ai ? <AskAi id={ai} label={title} auto={aiAuto} /> : null}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -155,12 +176,12 @@ export function CardFoot({ children }: { children: ReactNode }) {
 }
 
 const TAG_TONES = {
-  plain: "border-edge bg-card text-muted",
-  o2c: "border-sky/60 bg-sky-wash text-sky-ink",
-  p2p: "border-peach/70 bg-peach-wash text-peach-ink",
-  good: "border-good/30 bg-good-wash text-good",
-  warn: "border-warn/30 bg-warn-wash text-warn",
-  bad: "border-bad/35 bg-bad-wash text-bad",
+  plain: "text-muted",
+  o2c: "text-g1",
+  p2p: "text-g2",
+  good: "text-accent",
+  warn: "text-muted",
+  bad: "text-bad",
 } as const;
 
 export type TagTone = keyof typeof TAG_TONES;
@@ -168,7 +189,7 @@ export type TagTone = keyof typeof TAG_TONES;
 export function Tag({ tone = "plain", children }: { tone?: TagTone; children: ReactNode }) {
   return (
     <span
-      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold ${TAG_TONES[tone]}`}
+      className={`inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border border-edge bg-card px-2.5 py-1 text-[11px] font-medium ${TAG_TONES[tone]}`}
     >
       {children}
     </span>
@@ -196,7 +217,7 @@ export function StatCard({
           {value}
         </div>
         <div className="mt-0.5 text-xs leading-[1.4] text-muted">{note}</div>
-        <span className="absolute inset-x-0 bottom-0 h-[3px]" style={{ background: tone }} />
+        <span className="absolute inset-x-0 bottom-0 h-0.5" style={{ background: tone }} />
       </div>
     </Reveal>
   );
@@ -211,10 +232,10 @@ export function StatRow({ children }: { children: ReactNode }) {
 }
 
 const ROW_TONES = {
-  good: "border-l-mint [&_em]:text-good",
-  warn: "border-l-butter [&_em]:text-warn",
-  bad: "border-l-rose [&_em]:text-bad",
-  plain: "border-l-lav [&_em]:text-lav-ink",
+  good: "[&_em]:decoration-accent",
+  warn: "[&_em]:decoration-bad",
+  bad: "[&_em]:decoration-bad",
+  plain: "[&_em]:decoration-accent",
 } as const;
 
 /**
@@ -236,9 +257,9 @@ export function VerdictRow({
   return (
     <Reveal delay={delay}>
       <div
-        className={`flex flex-wrap items-start gap-3.5 rounded-[var(--radius-inner)] border border-edge border-l-4 bg-card px-4 py-3.5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)] ${ROW_TONES[tone]}`}
+        className={`flex flex-wrap items-start gap-3.5 rounded-[var(--radius-inner)] border border-edge bg-card px-4 py-3.5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)] ${ROW_TONES[tone]}`}
       >
-        <p className="min-w-0 flex-[1_1_330px] text-sm font-medium leading-[1.55] [&_em]:font-bold [&_em]:not-italic">
+        <p className="min-w-0 flex-[1_1_330px] text-sm font-medium leading-[1.55] [&_em]:font-bold [&_em]:not-italic [&_em]:text-ink [&_em]:underline [&_em]:decoration-[2.5px] [&_em]:underline-offset-[5px]">
           {children}
         </p>
         <div className="flex flex-wrap items-center gap-1.5">

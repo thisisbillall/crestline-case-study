@@ -108,9 +108,9 @@ export function CashCycle() {
         axisLabel: { fontSize: 12.5, color: C.ink, fontWeight: 600, fontFamily: FONT },
       },
       series: [
-        leg("dio", "Stock on site", C.lav, [20, 0, 0, 20]),
-        leg("cad", "Built, not billable", C.butter, 0),
-        leg("dso", "Invoiced, unpaid", C.sky, [0, 20, 20, 0]),
+        leg("dio", "Stock on site", C.g2, [20, 0, 0, 20]),
+        leg("cad", "Built, not billable", C.g3, 0),
+        leg("dso", "Invoiced, unpaid", C.g1, [0, 20, 20, 0]),
         {
           name: "Vendor paid",
           type: "scatter",
@@ -118,7 +118,7 @@ export function CashCycle() {
           z: 10,
           itemStyle: {
             color: "#fff",
-            borderColor: C.peachInk,
+            borderColor: C.g2,
             borderWidth: 3,
             shadowBlur: 10,
             shadowColor: "rgba(212,134,74,.4)",
@@ -138,7 +138,7 @@ export function CashCycle() {
 
   return (
     <Card>
-      <CardHead title="Material bought → client pays" sub={`${data.short} · drawn to scale`}>
+      <CardHead title="Material bought → client pays" sub={`${data.short} · drawn to scale`} ai="cycle">
         <PillGroup label="Project">
           <Pill active={ref === "ALL"} onClick={() => setRef("ALL")}>
             All six

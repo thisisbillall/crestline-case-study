@@ -71,7 +71,7 @@ export function OutlineRail() {
         aria-hidden="true"
       >
         <div
-          className="h-full rounded-r-full bg-linear-90 from-lav-ink via-lav to-mint transition-[width] duration-150 ease-out"
+          className="h-full rounded-r-full bg-linear-90 from-accent via-g3 to-accent-soft transition-[width] duration-150 ease-out"
           style={{ width: `${progress * 100}%` }}
         />
       </div>
@@ -84,7 +84,7 @@ export function OutlineRail() {
         <nav className="relative">
           <span className="absolute left-[7px] top-1 bottom-1 w-px bg-edge" aria-hidden="true" />
           <span
-            className="absolute left-[7px] top-1 w-px rounded-full bg-linear-180 from-lav-ink to-mint transition-[height] duration-200 ease-out"
+            className="absolute left-[7px] top-1 w-px rounded-full bg-linear-180 from-accent to-accent-soft transition-[height] duration-200 ease-out"
             style={{ height: `calc(${progress * 100}% - 8px)` }}
             aria-hidden="true"
           />
@@ -108,8 +108,8 @@ export function OutlineRail() {
                       className={[
                         "absolute left-[3px] top-[11px] size-[9px] rounded-full border-2 transition-all duration-300",
                         open
-                          ? "border-lav-ink bg-lav-ink scale-110"
-                          : "border-edge bg-card group-hover:border-lav",
+                          ? "border-accent bg-accent scale-110"
+                          : "border-edge bg-card group-hover:border-g3",
                       ].join(" ")}
                       aria-hidden="true"
                     />
@@ -117,7 +117,7 @@ export function OutlineRail() {
                       <span
                         className={[
                           "block text-[10px] font-semibold tracking-[0.1em]",
-                          open ? "text-lav-ink" : "text-faint",
+                          open ? "text-accent" : "text-faint",
                         ].join(" ")}
                       >
                         {chapter.n}
@@ -147,7 +147,7 @@ export function OutlineRail() {
                               className={[
                                 "w-full rounded-md py-[5px] pl-9 pr-2 text-left text-[12.5px] leading-snug transition-colors duration-200",
                                 here
-                                  ? "font-semibold text-lav-ink"
+                                  ? "font-semibold text-accent"
                                   : "text-faint hover:text-muted",
                               ].join(" ")}
                             >

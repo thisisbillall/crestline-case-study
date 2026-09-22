@@ -22,6 +22,7 @@ import {
   SubBeat,
   Wrap,
 } from "@/components/ui/primitives";
+import { Bad, Good } from "@/components/ui/figure";
 import { Grey } from "@/components/ui/grey";
 import { Reveal } from "@/components/ui/reveal";
 import { Masthead } from "@/components/shell/logo";
@@ -39,7 +40,7 @@ export default function CaseStudy() {
 
           <Pad className="pb-12 pt-9 sm:pb-16 sm:pt-12">
             <Reveal>
-              <p className="text-[13px] font-semibold tracking-[0.02em] text-lav-ink">
+              <p className="text-[13px] font-semibold tracking-[0.02em] text-accent">
                 Grey Infra, six live projects, 427 crore of contract value
               </p>
             </Reveal>
@@ -71,7 +72,7 @@ export default function CaseStudy() {
                   label="We released"
                   value={<CountUp to={12.2} decimals={1} prefix="₹" suffix=" Cr" />}
                   note="one off, at terms they had already signed"
-                  tone="var(--color-mint)"
+                  tone="var(--color-accent)"
                 />
                 <StatCard
                   label="We cut the cash cycle"
@@ -82,21 +83,21 @@ export default function CaseStudy() {
                     </>
                   }
                   note="days from paying out to being paid"
-                  tone="var(--color-lav)"
+                  tone="var(--color-g4)"
                   delay={60}
                 />
                 <StatCard
                   label="We stopped funding vendors"
                   value={<CountUp to={1.49} decimals={2} prefix="₹" suffix=" Cr" />}
                   note="a year of carry they were absorbing"
-                  tone="var(--color-peach)"
+                  tone="var(--color-g4)"
                   delay={120}
                 />
                 <StatCard
                   label="We priced the process"
                   value={<CountUp to={2.01} decimals={2} prefix="₹" suffix=" Cr" />}
                   note="a year burning in waits nobody owned"
-                  tone="var(--color-rose)"
+                  tone="var(--color-g4)"
                   delay={180}
                 />
               </StatRow>
@@ -109,9 +110,9 @@ export default function CaseStudy() {
             problem={<>The client pays in 45 days. The vendors are paid in 28.</>}
             outcome={
               <>
-                We brought collection down to <b>32.6 days</b> and lifted vendor credit to{" "}
-                <b>40 days</b>. The gap flipped from <b>17 days short</b> to <b>7 days of free
-                funding</b>, without renegotiating a single contract.
+                We brought collection down to <Good>32.6 days</Good> and lifted vendor credit to{" "}
+                <Good>40 days</Good>. The gap flipped from <Bad>17 days short</Bad> to{" "}
+                <Good>7 days of free funding</Good>, without renegotiating a single contract.
               </>
             }
             how={
@@ -189,9 +190,9 @@ export default function CaseStudy() {
             problem={<>Every vendor was paid before the client paid. All of them.</>}
             outcome={
               <>
-                We priced that habit at <b>₹1.49 crore a year</b> and showed them which 11 vendors on
-                which sites were doing it. On Wakad alone the money left <b>64.7 days</b> before it
-                came back in.
+                We priced that habit at <Bad>₹1.49 crore a year</Bad> and showed them which 11
+                vendors on which sites were doing it. On Wakad alone the money left{" "}
+                <Bad>64.7 days</Bad> before it came back in.
               </>
             }
             how={
@@ -261,9 +262,10 @@ export default function CaseStudy() {
             problem={<>{<Grey s />} ERP knew what happened. It did not know how long anything took.</>}
             outcome={
               <>
-                We rebuilt both processes from the event log: <b>398 cases</b>, 40 distinct steps, 67
-                routes nobody had designed. Then we ranked every wait by money instead of duration,
-                and handed them a list of <b>25 bottlenecks</b> with a desk against each one.
+                We rebuilt both processes from the event log: <Good>398 cases</Good>, 40 distinct
+                steps, 67 routes nobody had designed. Then we ranked every wait by money instead of
+                duration, and handed them a list of <Bad>25 bottlenecks</Bad> with a desk against
+                each one.
               </>
             }
             how={
@@ -345,7 +347,7 @@ export default function CaseStudy() {
           <section className="border-t border-hair">
             <Pad className="py-14 sm:py-20">
               <Reveal>
-                <div className="flex flex-wrap items-center gap-8 rounded-[var(--radius-card)] border border-lav/50 bg-linear-140 from-[#efedfc] via-[#e9f7f1] to-[#fdf3ec] p-7 sm:p-10 lg:p-12">
+                <div className="flex flex-wrap items-center gap-8 rounded-[var(--radius-card)] border border-g3/50 bg-linear-140 from-[#efedfc] via-[#e9f7f1] to-[#fdf3ec] p-7 sm:p-10 lg:p-12">
                   <div className="flex-[1_1_320px]">
                     <h2 className="max-w-[19ch] text-[clamp(23px,3.1vw,34px)] font-extrabold leading-[1.14]">
                       Your event log already knows where your money is.
@@ -380,22 +382,9 @@ export default function CaseStudy() {
           </section>
 
           <footer className="border-t border-hair bg-ground/60">
-            <Pad className="py-9 text-[12.5px] leading-[1.65] text-faint">
-              <p>
-                <b className="font-semibold text-muted">How these figures were made.</b> Every one is
-                derived on read from {<Grey s />} ERP through the same code its own screens run: 6,837 events, 398 cases, 458 trial balance rows, struck at each project&rsquo;s
-                last event on 20 September 2027 rather than at today&rsquo;s date, so this page shows
-                the same numbers next month. Where a source could not supply something it reads NA,
-                never zero.
-              </p>
-              <p className="mt-3">
-                <b className="font-semibold text-muted">Measured against target.</b> The cycle, ratio,
-                vendor timing, bottleneck and before and after figures are measured. The 12.2 crore
-                release is our own cycle simulator run at the certification windows, payment terms and
-                spend weighted vendor terms already present in {<Grey s />} contracts. It is a target, and it
-                is the target each commitment is closed against.
-              </p>
-              <p className="mt-3">© Crestline. Working capital intelligence for EPC.</p>
+            <Pad className="flex flex-wrap items-center justify-between gap-4 py-8 text-[12.5px] text-faint">
+              <p>© Crestline. Working capital intelligence for EPC.</p>
+              <p>Published with {<Grey s />} consent.</p>
             </Pad>
           </footer>
         </Sheet>

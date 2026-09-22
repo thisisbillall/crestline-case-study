@@ -30,12 +30,12 @@ export function Conformance() {
           const p = PROJECTS[ps[0].dataIndex];
           return [
             `<b style="font-family:${DISPLAY}">${p.short}</b>`,
-            `<span style="color:${C.skyInk}">●</span> O2C &nbsp; ${p.o2c.median.toFixed(
+            `<span style="color:${C.g1}">●</span> O2C &nbsp; ${p.o2c.median.toFixed(
               1,
             )}d median · P80 ${p.o2c.p80.toFixed(1)}d · ${p.o2c.conf.toFixed(0)}% conform · ${
               p.o2c.cases
             } cases`,
-            `<span style="color:${C.peachInk}">●</span> P2P &nbsp; ${p.p2p.median.toFixed(
+            `<span style="color:${C.g2}">●</span> P2P &nbsp; ${p.p2p.median.toFixed(
               1,
             )}d median · P80 ${p.p2p.p80.toFixed(1)}d · ${p.p2p.conf.toFixed(0)}% conform · ${
               p.p2p.cases
@@ -69,14 +69,14 @@ export function Conformance() {
           type: "bar",
           barWidth: 13,
           barGap: "36%",
-          itemStyle: { color: fill(C.sky, true), borderRadius: 7 },
+          itemStyle: { color: fill(C.g1, true), borderRadius: 7 },
           data: PROJECTS.map((p) => p.o2c.median),
           label: {
             show: true,
             position: "right",
             distance: 8,
             fontSize: 11,
-            color: C.skyInk,
+            color: C.g1,
             fontWeight: 700,
             fontFamily: FONT,
             formatter: (p: unknown) => `${cb(p).value.toFixed(0)}d`,
@@ -86,14 +86,14 @@ export function Conformance() {
           name: "P2P · order to settlement",
           type: "bar",
           barWidth: 13,
-          itemStyle: { color: fill(C.peach, true), borderRadius: 7 },
+          itemStyle: { color: fill(C.g3, true), borderRadius: 7 },
           data: PROJECTS.map((p) => p.p2p.median),
           label: {
             show: true,
             position: "right",
             distance: 8,
             fontSize: 11,
-            color: C.peachInk,
+            color: C.g2,
             fontWeight: 700,
             fontFamily: FONT,
             formatter: (p: unknown) => `${cb(p).value.toFixed(0)}d`,
@@ -129,6 +129,7 @@ export function Conformance() {
       <CardHead
         title="Median case duration and conformance, per stream"
         sub="Grey marker is the P80, a behavioural measure rather than an accounting ratio"
+        ai="conformance"
       />
       <div className="px-3 pb-2">
         <EChart option={option} height={420} ariaLabel="Case duration and conformance by project and stream" />

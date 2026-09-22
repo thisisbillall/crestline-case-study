@@ -90,7 +90,7 @@ export function ValueTable() {
                 </td>
               </tr>
             ))}
-            <tr className="bg-lav-wash font-bold">
+            <tr className="bg-accent-wash font-bold">
               <td className="rounded-l-xl px-3 py-3 pl-2 text-left">Recurring, a year</td>
               <td className="px-3 py-3 text-right text-[15px]">₹4.63 Cr</td>
               <td className="px-3 py-3 text-right text-[11.5px]">a year</td>

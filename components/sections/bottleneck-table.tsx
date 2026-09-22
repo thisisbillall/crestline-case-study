@@ -31,7 +31,7 @@ export function BottleneckTable() {
 
   return (
     <Card>
-      <CardHead title="Every discovered bottleneck, priced">
+      <CardHead title="Every discovered bottleneck, priced" ai="bottlenecks">
         <Segmented<Filter>
           label="Ownership"
           value={filter}
@@ -89,7 +89,7 @@ export function BottleneckTable() {
                 </td>
               </tr>
             ))}
-            <tr className="bg-lav-wash font-bold">
+            <tr className="bg-accent-wash font-bold">
               <td className="rounded-l-xl px-3 py-3 pl-2 text-left">
                 {rows.length} ranked by money, not duration
               </td>

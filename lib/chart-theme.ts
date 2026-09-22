@@ -11,17 +11,36 @@ import * as echarts from "echarts";
  */
 
 export const C = {
-  lav: "#b8b0ee", lavInk: "#6b5fc7",
-  mint: "#9fe0c5", mintInk: "#2f9e78",
-  sky: "#a5cdf5", skyInk: "#4a86c4",
-  peach: "#f9c9a4", peachInk: "#d4864a",
-  rose: "#f7b8bd", roseInk: "#d76b78",
-  butter: "#f7dfa0", butterInk: "#c99a2e",
-  good: "#17a07a", warn: "#c9902a", bad: "#dd6670",
-  ink: "#1a1d26", muted: "#6f7583", faint: "#9aa0ad",
-  line: "#eeeff5", ground: "#f7f7fc",
-  /** The months before Crestline: a warm slate, never a grey void. */
-  slate: "#d2d6e0",
+  /*
+    A GRAPHITE RAMP AND ONE ACCENT.
+
+    Six pastels meant every chart arrived in a different key and none of them
+    meant anything. The series scale is now four steps of graphite, which
+    separate on lightness rather than on hue, so a stack reads in order and a
+    page of charts reads as one system.
+
+    Green is the only accent and it always means the same thing: better, inside
+    terms, released, since. Rose appears only where something is genuinely late
+    or past an agreed line, and never as decoration.
+  */
+  g1: "#3b4150",
+  g2: "#6f7787",
+  g3: "#a5abb9",
+  g4: "#d6dae2",
+
+  green: "#2f9e78",
+  greenSoft: "#8ccbaf",
+  greenWash: "rgba(140,203,175,.20)",
+
+  risk: "#bf6f79",
+  riskSoft: "#e2a5ab",
+  riskWash: "rgba(226,165,171,.20)",
+
+  ink: "#1a1d26",
+  muted: "#6f7583",
+  faint: "#9aa0ad",
+  line: "#eeeff5",
+  ground: "#f7f7fc",
 } as const;
 
 export const FONT = "Inter, system-ui, sans-serif";
@@ -126,13 +145,14 @@ export const asOption = (option: Record<string, unknown>): echarts.EChartsOption
  *   butter waiting, built but not yet billable
  */
 const MID: Record<string, string> = {
-  [C.sky]: "#80b4e9",
-  [C.mint]: "#75cea9",
-  [C.peach]: "#f0ac78",
-  [C.rose]: "#ef929a",
-  [C.lav]: "#9b90e3",
-  [C.butter]: "#eeca6f",
-  [C.slate]: "#bcc2cf",
+  [C.g1]: "#2d323e",
+  [C.g2]: "#5d6473",
+  [C.g3]: "#939aa9",
+  [C.g4]: "#c5cad4",
+  [C.green]: "#268665",
+  [C.greenSoft]: "#72bd9c",
+  [C.risk]: "#a85a64",
+  [C.riskSoft]: "#d68f96",
 };
 
 export function fill(pastel: string, horizontal = false) {
@@ -141,11 +161,12 @@ export function fill(pastel: string, horizontal = false) {
 
 /** The washed version, for a band or an area behind the data. */
 export const WASH: Record<string, string> = {
-  [C.sky]: "rgba(165,205,245,.22)",
-  [C.mint]: "rgba(159,224,197,.26)",
-  [C.peach]: "rgba(249,201,164,.24)",
-  [C.rose]: "rgba(247,184,189,.24)",
-  [C.lav]: "rgba(184,176,238,.24)",
-  [C.butter]: "rgba(247,223,160,.26)",
-  [C.slate]: "rgba(210,214,224,.30)",
+  [C.g1]: "rgba(59,65,80,.10)",
+  [C.g2]: "rgba(111,119,135,.12)",
+  [C.g3]: "rgba(165,171,185,.16)",
+  [C.g4]: "rgba(214,218,226,.30)",
+  [C.green]: C.greenWash,
+  [C.greenSoft]: C.greenWash,
+  [C.risk]: C.riskWash,
+  [C.riskSoft]: C.riskWash,
 };

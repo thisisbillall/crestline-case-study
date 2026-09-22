@@ -38,7 +38,7 @@ export function PeakFunding() {
       tooltip: {
         ...TOOLTIP,
         trigger: "axis",
-        axisPointer: { type: "line", lineStyle: { color: C.lav, width: 2 } },
+        axisPointer: { type: "line", lineStyle: { color: C.g2, width: 2 } },
         valueFormatter: (v: unknown) => inr(v as number),
       },
       legend: LEGEND,
@@ -71,14 +71,14 @@ export function PeakFunding() {
           type: "bar",
           barGap: "12%",
           barWidth: "32%",
-          itemStyle: { color: fill(C.mint), borderRadius: [8, 8, 0, 0] },
+          itemStyle: { color: fill(C.greenSoft), borderRadius: [8, 8, 0, 0] },
           data: FLOW.map(([, collected]) => collected),
         },
         {
           name: "Paid out",
           type: "bar",
           barWidth: "32%",
-          itemStyle: { color: fill(C.rose), borderRadius: [8, 8, 0, 0] },
+          itemStyle: { color: fill(C.g3), borderRadius: [8, 8, 0, 0] },
           data: FLOW.map(([, , paid]) => paid),
         },
         {
@@ -90,7 +90,7 @@ export function PeakFunding() {
           z: 6,
           lineStyle: {
             width: 3,
-            color: C.lavInk,
+            color: C.g1,
             shadowBlur: 12,
             shadowColor: "rgba(107,95,199,.35)",
             shadowOffsetY: 4,
@@ -102,7 +102,7 @@ export function PeakFunding() {
             symbolSize: 14,
             z: 20,
             itemStyle: {
-              color: C.roseInk,
+              color: C.risk,
               borderColor: "#fff",
               borderWidth: 3,
               shadowBlur: 12,
@@ -112,12 +112,12 @@ export function PeakFunding() {
               show: true,
               position: "bottom",
               distance: 12,
-              color: C.roseInk,
+              color: C.risk,
               fontWeight: 700,
               fontSize: 12.5,
               fontFamily: FONT,
               backgroundColor: "#fff",
-              borderColor: C.rose,
+              borderColor: C.riskSoft,
               borderWidth: 1,
               borderRadius: 10,
               padding: [6, 10],
@@ -144,6 +144,7 @@ export function PeakFunding() {
       <CardHead
         title="Collections against payments, and the running position"
         sub="22 months · all six projects"
+        ai="trough"
       />
       <div className="px-3 pb-4">
         <EChart

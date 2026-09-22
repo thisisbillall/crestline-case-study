@@ -38,7 +38,7 @@ export function BeforeSince() {
             lines.push(`<span style="color:${C.muted}">no change</span>`);
           } else {
             lines.push(
-              `Change &nbsp; <b style="color:${moved > 0 ? C.good : C.roseInk}">${
+              `Change &nbsp; <b style="color:${moved > 0 ? C.green : C.risk}">${
                 moved > 0 ? "−" : "+"
               }${Math.abs(moved).toFixed(1)} days</b>`,
               `Case-days returned &nbsp; <b>${(moved * cases).toFixed(0)}</b>`,
@@ -69,7 +69,7 @@ export function BeforeSince() {
           type: "bar",
           barWidth: 12,
           barGap: "32%",
-          itemStyle: { color: fill(C.slate, true), borderRadius: 6 },
+          itemStyle: { color: fill(C.g4, true), borderRadius: 6 },
           data: GATES.map(([, before]) => before),
         },
         {
@@ -79,10 +79,11 @@ export function BeforeSince() {
           itemStyle: {
             color: (p: unknown) =>
               GATES[cb(p).dataIndex][1] > GATES[cb(p).dataIndex][2]
-                ? fill(C.mint, true)
-                : fill(C.slate, true),
+                ? fill(C.greenSoft, true)
+                : fill(C.g4, true),
             borderRadius: 6,
           },
+          labelLayout: { hideOverlap: true },
           data: GATES.map(([, , since]) => since),
           label: {
             show: true,
@@ -92,7 +93,7 @@ export function BeforeSince() {
             fontWeight: 700,
             fontFamily: FONT,
             color: (p: unknown) =>
-              GATES[cb(p).dataIndex][1] > GATES[cb(p).dataIndex][2] ? C.good : C.faint,
+              GATES[cb(p).dataIndex][1] > GATES[cb(p).dataIndex][2] ? C.green : C.faint,
             formatter: (p: unknown) => {
               const [, before, since, cases] = GATES[cb(p).dataIndex];
               const moved = before - since;
@@ -113,6 +114,7 @@ export function BeforeSince() {
         <CardHead
           title="Median days per gate, before against since"
           sub="Chakan MIDC · 7 months before, 13 months since"
+          ai="before"
         />
         <div className="px-3 pb-4">
           <EChart option={option} height={420} ariaLabel="Gate medians before and since Crestline" />
